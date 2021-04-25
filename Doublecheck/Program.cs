@@ -1,13 +1,24 @@
-﻿namespace Doublecheck
+﻿using Doublecheck.Engine;
+
+namespace Doublecheck
 {
     public static class Program
     {
         public static int Main(string[] args)
         {
             var ruleBinder = new RuleBinder();
-            ruleBinder.InvokeRule("MustNotContainSpaces");
+            var exitCode = ExitCode.Success;
 
-            return 123;
+            try
+            {
+                ruleBinder.InvokeRule("MustNotContainSpaces");
+            }
+            catch (RuleEngineException ex)
+            {
+                exitCode = ex.ExitCode;
+            }
+
+            return (int) exitCode;
         }
     }
 }
