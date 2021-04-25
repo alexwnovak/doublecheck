@@ -1,0 +1,1 @@
+dotnet test ./Doublecheck.Tests/Doublecheck.Tests.csproj -l "console;verbosity=detailed"
