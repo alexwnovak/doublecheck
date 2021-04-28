@@ -1,3 +1,4 @@
+using Doublecheck.Tests.Internal;
 using FluentAssertions;
 using Xunit;
 
@@ -36,7 +37,8 @@ rules:
   '*.dll':
     - RuleOne
 ";
-            Program.Main(new[] { yaml });
+            var appController = new AppController(new InMemoryFileSystem());
+            appController.Run(new[] { yaml });
 
         }
     }

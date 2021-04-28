@@ -25,7 +25,7 @@ namespace Doublecheck
                 .Build();
             var yamlConfig = deserializer.Deserialize<YamlConfig>(yaml);
 
-            var files = FileLocator.Gather(yamlConfig);
+            var files = new FileLocator(_fileSystem).Gather(yamlConfig);
 
 
             var ruleBinder = new RuleBinder();
