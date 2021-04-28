@@ -34,10 +34,21 @@ rules:
         {
              string yaml = @"
 rules:
-  '*.dll':
+  file.txt:
     - RuleOne
 ";
-            var appController = new AppController(new InMemoryFileSystem());
+
+            var textFileContents = new[]
+            {
+              "line one",
+              "line two",
+              "line three"
+            };
+
+            var fileSystem = new InMemoryFileSystem();
+            fileSystem.WriteAllLines("file.txt", textFileContents);
+
+            var appController = new AppController(fileSystem);
             appController.Run(new[] { yaml });
 
         }
