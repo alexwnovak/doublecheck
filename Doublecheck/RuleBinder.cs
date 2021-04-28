@@ -5,12 +5,13 @@ namespace Doublecheck
 {
     public class RuleBinder
     {
-        public void InvokeRule(string name)
+        public RuleCallSite Locate(string name)
         {
             var thisAssembly = Assembly.GetExecutingAssembly();
             var ruleType = thisAssembly.GetExportedTypes().First(t => t.Name == name);
             var invokeMethod = ruleType.GetMethod("Invoke");
-            invokeMethod.Invoke(null, null);
+
+            return new RuleCallSite(() => invokeMethod.Invoke(null, null));
         }
     }
 }

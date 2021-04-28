@@ -10,5 +10,34 @@ namespace Doublecheck.Tests
         {
             Program.Main(null).Should().Be((int)ExitCode.CannotInvokeRule);
         }
+
+        [Fact]
+        public void Foo()
+        {
+            string yaml = @"
+rules:
+  '*':
+    - MustNotContainSpaces
+  '*.cs':
+    - RuleOne
+    - RuleTwo
+  '*.sln':
+    - RuleTwo
+    - RuleThree
+";
+            Program.Main(new[] { yaml });
+        }
+
+        [Fact]
+        public void ResolveFiles()
+        {
+             string yaml = @"
+rules:
+  '*.dll':
+    - RuleOne
+";
+            Program.Main(new[] { yaml });
+
+        }
     }
 }
