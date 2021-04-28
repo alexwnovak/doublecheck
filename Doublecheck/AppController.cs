@@ -7,6 +7,13 @@ namespace Doublecheck
 {
     public class AppController
     {
+        private readonly IFileSystem _fileSystem;
+
+        public AppController(IFileSystem fileSystem)
+        {
+            _fileSystem = fileSystem;
+        }
+
         public int Run(string[] args)
         {
             // While we stand up Yaml support, just assume arg0 IS the raw yaml.

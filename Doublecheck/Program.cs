@@ -4,7 +4,8 @@
     {
         public static int Main(string[] args)
         {
-            return new AppController().Run(args);
+            var appController = new AppController(new FileSystem());
+            return appController.Run(args);
         }
     }
 }
